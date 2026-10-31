@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    container_name: campuspulse-app
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      MONGO_URI: mongodb://mongo:27017/campuspulse
+      SEED_DATABASE: "true"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    restart: unless-stopped
+  mongo:
+    image: mongo:7
+    container_name: campuspulse-mongo
+    volumes:
+      - campuspulse_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    restart: unless-stopped
+volumes:
+  campuspulse_data:

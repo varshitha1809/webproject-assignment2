@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CampusPulse — Your campus, in sync</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="#"><span class="brand-icon">✳</span><span><b>campus<span>pulse</span></b><small>YOUR CAMPUS, IN SYNC</small></span></a>
+  <div class="campus-tag"><span class="pulse-dot"></span> LIVE CAMPUS FEED</div>
+  <nav>
+    <button class="nav active" data-view="home"><span>⌂</span> Overview</button>
+    <button class="nav" data-view="events"><span>✦</span> Discover events <i>4</i></button>
+    <button class="nav" data-view="lost"><span>⌕</span> Lost & found <i id="lostNav">3</i></button>
+    <button class="nav" data-view="issues"><span>⚒</span> Campus fixes <i id="issueNav">3</i></button>
+    <button class="nav" data-view="clubs"><span>◉</span> Communities</button>
+  </nav>
+  <div class="sidebar-bottom"><div class="mini-card"><div class="mini-spark">✦</div><b>Make campus yours.</b><p>One small action can make a big difference.</p><button data-action="issue">Share an idea ↗</button></div><div class="profile"><div class="profile-avatar">D</div><div><b>Demo Student</b><small>Campus explorer</small></div><span>•••</span></div></div>
+</aside>
+<main class="main">
+<header class="topbar"><div class="crumb">Campus / <b id="crumbTitle">Overview</b></div><div class="top-actions"><span class="live"><i></i> Campus is active</span><button id="themeToggle" title="Toggle dark mode">◐</button><button class="bell" id="bell">♧<em>2</em></button></div></header>
+<section class="content">
+  <div class="hero">
+    <div class="hero-copy"><div class="eyebrow"><span>✳</span> MONDAY ENERGY, EVERY DAY</div><h1>Good things<br>happen <em>together.</em></h1><p>Your campus life, connected. Find your people, discover what's on, and help make campus better.</p><div class="hero-actions"><button class="primary" data-action="event">＋ Add an event</button><button class="ghost" data-view="events">Explore what's on <span>↗</span></button></div></div>
+    <div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="sun">✳</div><div class="art-note note-one">🎨 <span>Make stuff</span></div><div class="art-note note-two">🌿 <span>Grow together</span></div><div class="art-note note-three">🎤 <span>Find your voice</span></div><div class="art-center">CP</div><div class="tiny-star star-one">✦</div><div class="tiny-star star-two">✧</div></div>
+  </div>
+  <div class="section-head"><div><div class="eyebrow muted">THE CAMPUS AT A GLANCE</div><h2>Your little corner of campus</h2></div><span class="updated">↻ Updates live from the community</span></div>
+  <div class="stats">
+    <article class="stat stat-lilac"><div class="stat-symbol">✦</div><span>UPCOMING EVENTS</span><strong id="eventCount">—</strong><small>Things to look forward to <b>↗</b></small></article>
+    <article class="stat stat-peach"><div class="stat-symbol">⌕</div><span>WAITING TO BE FOUND</span><strong id="lostCount">—</strong><small>Let's reunite lost things <b>↗</b></small></article>
+    <article class="stat stat-mint"><div class="stat-symbol">⚒</div><span>CAMPUS FIXES</span><strong id="issueCount">—</strong><small>Issues getting attention <b>↗</b></small></article>
+    <article class="stat stat-sky"><div class="stat-symbol">◉</div><span>COMMUNITIES</span><strong id="clubCount">—</strong><small>Find your kind of people <b>↗</b></small></article>
+  </div>
+  <div class="main-grid">
+    <section class="panel events-panel"><div class="panel-head"><div><div class="eyebrow muted">SAVE YOUR SPOT</div><h2>Coming up <span class="spark">✦</span></h2></div><button class="text-btn" data-view="events">All events ↗</button></div><div id="eventList" class="event-list"><div class="loading">Loading campus events…</div></div></section>
+    <section class="panel lost-panel"><div class="panel-head"><div><div class="eyebrow muted">IT HAPPENS</div><h2>Lost something?</h2></div><button class="round-btn" data-action="lost">＋</button></div><p class="panel-intro">Little things find their way home. Check the board or add what you've found.</p><div id="lostList" class="lost-list"></div><button class="wide-btn" data-view="lost">Open the lost & found board <span>→</span></button></section>
+  </div>
+  <div class="bottom-grid">
+    <section class="panel clubs-panel"><div class="panel-head"><div><div class="eyebrow muted">FIND YOUR PEOPLE</div><h2>Community corner</h2></div><button class="text-btn" data-view="clubs">See all ↗</button></div><div id="clubList" class="club-list"></div></section>
+    <section class="panel fixes-panel"><div class="panel-head"><div><div class="eyebrow muted">BETTER, TOGETHER</div><h2>Campus fixes</h2></div><button class="round-btn" data-action="issue">＋</button></div><div id="issueList" class="issue-list"></div><button class="wide-btn" data-view="issues">View community reports <span>→</span></button></section>
+  </div>
+  <footer><span class="footer-mark">✳ campuspulse</span><span>Built for the people who make campus feel like home.</span><span>Node · Express · MongoDB · Docker</span></footer>
+</section>
+</main>
+<dialog id="eventDialog"><form id="eventForm" method="dialog"><div class="dialog-head"><div><div class="eyebrow muted">BRING PEOPLE TOGETHER</div><h2>Create an event</h2></div><button type="button" class="close" data-close>×</button></div><label>Event name<input name="title" required placeholder="e.g. Sunset sketch session"></label><div class="two-fields"><label>Category<select name="category"><option>Community</option><option>Workshop</option><option>Culture</option><option>Sports</option><option>Career</option></select></label><label>Date<input name="date" type="date" required></label></div><div class="two-fields"><label>Time<input name="time" required placeholder="4:30 PM"></label><label>Venue<input name="venue" required placeholder="Student courtyard"></label></div><label>Hosted by<input name="host" required placeholder="Your club or name"></label><button class="primary submit" type="submit">Publish event ↗</button></form></dialog>
+<dialog id="lostDialog"><form id="lostForm" method="dialog"><div class="dialog-head"><div><div class="eyebrow muted">HELP IT FIND ITS WAY</div><h2>Post to lost & found</h2></div><button type="button" class="close" data-close>×</button></div><label>Item name<input name="item" required placeholder="What did you find or lose?"></label><div class="two-fields"><label>Category<input name="category" placeholder="Electronics"></label><label>Location<input name="location" required placeholder="Library, floor 2"></label></div><label>Description<textarea name="description" placeholder="Any identifying details?"></textarea></label><label>Contact email<input name="contact" type="email" required placeholder="you@campus.example"></label><button class="primary submit" type="submit">Post item ↗</button></form></dialog>
+<dialog id="issueDialog"><form id="issueForm" method="dialog"><div class="dialog-head"><div><div class="eyebrow muted">MAKE IT BETTER</div><h2>Report a campus issue</h2></div><button type="button" class="close" data-close>×</button></div><label>What's the issue?<input name="title" required placeholder="e.g. Broken light near the gate"></label><div class="two-fields"><label>Category<select name="category"><option>Maintenance</option><option>Wi-Fi</option><option>Cleanliness</option><option>Safety</option><option>Other</option></select></label><label>Priority<select name="priority"><option>Medium</option><option>Low</option><option>High</option></select></label></div><label>Location<input name="location" required placeholder="Building or campus area"></label><label>Details<textarea name="description" required placeholder="Tell the campus team what happened…"></textarea></label><label>Your name (optional)<input name="reportedBy" placeholder="Campus member"></label><button class="primary submit" type="submit">Send report ↗</button></form></dialog>
+<div id="toast" role="status" hidden></div><script src="/app.js"></script>
+</body></html>
